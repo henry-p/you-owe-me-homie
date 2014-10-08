@@ -1,5 +1,6 @@
 require 'spec_helper'
 
-describe Households do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Household do
+  it { should have_and_belong_to_many(:users) }
+  it { should validate_presence_of(:name) }
 end
