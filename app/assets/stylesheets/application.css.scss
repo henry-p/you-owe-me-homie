@@ -32,11 +32,20 @@ h1, h2 {
   text-align: center;
 }
 
+
+a, a:visited {
+  color: black;
+  text-decoration: underline;
+  &:hover {
+    color: #3D7A99;
+  };
+}
+
 input {
   display:block;
   height:40px;
   width:350px;
-  margin:auto;
+  margin: 10px auto;
   font-size: 1.2em;
   text-align: center;
 }
@@ -47,8 +56,9 @@ input[type=submit] {
   border:2px solid black;
   display:inline;
   &:hover {
-    border:2px solid gray;
+    border:2px solid #3D7A99;
     cursor:pointer;
+    color: #3D7A99;
   };
 }
 
@@ -59,6 +69,10 @@ input[type=submit] {
   display:inline-block;
 }
 
+p.error {
+  margin:0;
+}
+
 .sig-color {
-  color:#3D7A99
+  color:#3D7A99;
 }
