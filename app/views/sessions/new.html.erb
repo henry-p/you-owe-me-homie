@@ -1,14 +1,16 @@
-<h1>D'well</h1>
 
-<% if flash[:error] %>
-  <h2><%= flash[:error] %></h2>
-<% end %>
-
-<%= link_to "Register" %>
+<%= image_tag("home.png", id: "home") %>
+<h2 class='sig-color'>Dwell well.</h2>
 
 <%= form_tag login_path do %>
-  <%= text_field_tag :user_email %>
-  <%= password_field_tag :user_password %>
-  <%= submit_tag "Login" %>
+  <%= text_field_tag :user_email, '', placeholder: "Email" %>
+  <%= password_field_tag :user_password, '', placeholder: "Password" %>
+  <div class='wrap-center'>
+    <%= submit_tag "Login" %>
+    <%= link_to "Register" %>
+  </div>
 <% end %>
 
+<% if flash[:error] %>
+  <div class='wrap-center'><p class='error'><%= flash[:error] %></p></div>
+<% end %>
