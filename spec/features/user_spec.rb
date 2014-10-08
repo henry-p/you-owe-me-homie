@@ -61,5 +61,21 @@ feature 'User home' do
       expect(page).to have_content("DBC")
     end
   end
+end
+
+feature "Nav bar" do
+  context "layout global everywhere" do
+    it 'includes a logout button if user logged in' do
+      visit root_url
+      user = User.create!(first_name: "Sam", last_name: "Spade", email: "sam@test.com", password: "pow", password_confirmation: "pow")
+      fill_in 'user_email', with: "sam@test.com"
+      fill_in 'user_password', with: "pow"
+      expect(page).to_not have_content 'Logout'
+      first('input[type="submit"]').click
+      expect(page).to have_content 'Logout'
+      click_link 'Logout'
+      expect(page).to have_content "Register"
+    end
+  end
 
 end
