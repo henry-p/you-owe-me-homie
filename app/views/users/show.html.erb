@@ -1,1 +1,7 @@
 <%= current_user.first_name %>
+
+<% @households.each do |household| %>
+
+  <%= link_to "#{household.name}", household_path(household) %>
+
+<% end %>
