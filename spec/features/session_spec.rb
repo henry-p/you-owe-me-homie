@@ -4,7 +4,6 @@ feature 'Login' do
   context "on home page" do
     it "can click a register link" do
       visit root_url
-      expect(page).to have_content "D'well"
       click_link "Register"
     end
 
