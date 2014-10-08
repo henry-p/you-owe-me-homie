@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :redirect_if_not_logged_in, except: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @households = current_user.households
   end
 
 
@@ -21,5 +24,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
+  end
+
+  def redirect_if_not_logged_in
+    redirect_to root_path unless logged_in?
   end
 end
