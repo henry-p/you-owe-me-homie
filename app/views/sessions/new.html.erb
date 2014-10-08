@@ -7,8 +7,6 @@
   <h2><%= flash[:error] %></h2>
 <% end %>
 
-<%= link_to "Register", new_user_path %>
-
 
 <%= form_tag login_path do %>
   <%= text_field_tag :user_email, '', placeholder: "Email" %>
