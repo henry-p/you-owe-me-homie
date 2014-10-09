@@ -25,22 +25,22 @@ ActiveRecord::Schema.define(version: 20141009005815) do
     t.integer  "user_id"
   end
 
-  create_table "households", force: true do |t|
+  create_table "groups", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address"
+    t.string   "blurb"
   end
 
-  create_table "households_users", force: true do |t|
+  create_table "groups_users", force: true do |t|
     t.integer "user_id"
-    t.integer "household_id"
+    t.integer "group_id"
   end
 
   create_table "transactions", force: true do |t|
     t.integer  "from_user_id"
     t.integer  "to_user_id"
-    t.integer  "household_id"
+    t.integer  "group_id"
     t.decimal  "amount",       precision: 8, scale: 2
     t.boolean  "confirmed",                            default: false
     t.boolean  "is_bill",                              default: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20141009005815) do
   end
 
   add_index "transactions", ["from_user_id"], name: "index_transactions_on_from_user_id", using: :btree
-  add_index "transactions", ["household_id"], name: "index_transactions_on_household_id", using: :btree
+  add_index "transactions", ["group_id"], name: "index_transactions_on_group_id", using: :btree
   add_index "transactions", ["to_user_id"], name: "index_transactions_on_to_user_id", using: :btree
 
   create_table "users", force: true do |t|

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @households = current_user.households
+    @groups = current_user.groups
   end
 
   private

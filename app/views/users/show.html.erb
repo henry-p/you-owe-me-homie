@@ -1,12 +1,12 @@
-<div class='wrap-center'><%= link_to "Create dwelling", new_household_path, class: "link" %></div>
+<div class='wrap-center'><%= link_to "Create group", new_group_path, class: "link" %></div>
 
-<div class='wrap-center' id="dwelling-list">
+<div class='wrap-center' id="group-list">
   <ul>
-    <% @households.each do |household| %>
-      <%= link_to household_path(household), class: 'ul-link' do %>
+    <% @groups.each do |group| %>
+      <%= link_to group_path(group), class: 'ul-link' do %>
         <li>
-          <h2><%= "#{household.name}" %></h2>
-          <%= "#{household.address}" %>
+          <h2><%= "#{group.name}" %></h2>
+          <%= "#{group.blurb}" %>
         </li>
         <br>
       <% end %>
