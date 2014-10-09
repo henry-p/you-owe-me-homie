@@ -26,5 +26,47 @@ feature "Create Bill" do
         first('input[type="submit"]').click
       }.to change(Transaction, :count).by(2)
     end
+
+    it "cannot create a transaction with no members selected" do
+      visit group_path(Group.first)
+      click_link "Create Bill"
+      expect {
+        fill_in 'transaction_amount', with: "8.99"
+        first('input[type="submit"]').click
+      }.to change(Transaction, :count).by(0)
+    end
+
+    it "cannot create a transaction with invalid amount format" do
+      visit group_path(Group.first)
+      click_link "Create Bill"
+      expect {
+        find('input[value="andrea@mail.com"]').set(true)
+        fill_in 'transaction_amount', with: "00"
+        first('input[type="submit"]').click
+      }.to change(Transaction, :count).by(0)
+
+      visit group_path(Group.first)
+      click_link "Create Bill"
+      expect {
+        find('input[value="andrea@mail.com"]').set(true)
+        fill_in 'transaction_amount', with: "asd"
+        first('input[type="submit"]').click
+      }.to change(Transaction, :count).by(0)
+
+      visit group_path(Group.first)
+      click_link "Create Bill"
+      expect {
+        find('input[value="andrea@mail.com"]').set(true)
+        fill_in 'transaction_amount', with: "1.123"
+        first('input[type="submit"]').click
+      }.to change(Transaction, :count).by(0)
+    end
   end
 end
+
+
+
+
+
+
+
