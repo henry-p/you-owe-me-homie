@@ -14,6 +14,7 @@
 
 body {
   font-family: helvetica;
+  margin-top:50px;
 }
 
 h1, h2 {
@@ -32,6 +33,31 @@ h1, h2 {
   text-align: center;
 }
 
+header {
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
+  height:40px;
+  background-color:black;
+  overflow:hidden;
+  nav {
+    max-width:80%;
+    margin:auto;
+    text-align:right;
+  };
+  a, a:visited {
+    transition: all, 0.2s ease-in-out;
+    text-decoration:none;
+    display:inline-block;
+    padding:12px;
+    color:white;
+    &:hover {
+      color:white;
+      background-color:#333;
+    }
+  }
+}
 
 a, a:visited {
   color: black;

@@ -1,3 +1,6 @@
 <header>
-  <%= link_to "Logout", logout_path, method: :delete %>
+  <nav>
+    <%= link_to 'Hi, ' + current_user.first_name, "#" %>
+    <%= link_to "Logout", logout_path, method: :delete %>
+  </nav>
 </header>
