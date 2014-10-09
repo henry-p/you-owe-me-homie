@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+  <div class='wrap-center'><p class='error'><%= flash[:error] %></p></div>
+<% end %>
+
 <h1> <%= @group.name %> </h1>
 <h1> <%= @group.blurb %> </h1>
 
@@ -6,4 +10,11 @@
 <% end %>
 
 <%= link_to "Edit Group", edit_group_path(@group) %>
-<%= link_to "Create Bill", new_group_transaction_path(@group) %>
+<%= link_to "Create Bill", new_group_bill_path(@group) %>
+
+
+<% @members.each do |member| %>
+  <div class="member">
+    <h3><%= member.full_name %></h3>
+  </div>
+<% end %>

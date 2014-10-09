@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by(id: params[:id])
+    @members = @group.users - [current_user]
   end
 
   def edit

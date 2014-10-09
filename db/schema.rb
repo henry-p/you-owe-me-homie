@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20141009005815) do
     t.integer  "from_user_id"
     t.integer  "to_user_id"
     t.integer  "group_id"
-    t.decimal  "amount",       precision: 8, scale: 2
-    t.boolean  "confirmed",                            default: false
-    t.boolean  "is_bill",                              default: false
+    t.string   "amount"
+    t.boolean  "confirmed",        default: false
+    t.string   "transaction_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
