@@ -38,6 +38,8 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.2.0'
   gem 'launchy'
   gem 'shoulda-matchers', require: false
+  gem 'jasmine'
+  gem 'selenium-webdriver', '~> 2.39.0'
 end
 
 # Use ActiveModel has_secure_password

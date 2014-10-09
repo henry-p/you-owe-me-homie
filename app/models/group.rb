@@ -3,4 +3,17 @@ class Group < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :name, presence:true
+
+  def add_members(emails)
+    members = self.users
+    unregistered = Array.new
+    emails.each do |email|
+      if user = User.find_by(email: email)
+        self.users << user unless members.include? user
+      else
+        unregistered << email
+      end
+    end
+    unregistered
+  end
 end

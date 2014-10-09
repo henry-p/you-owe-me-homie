@@ -1,4 +1,4 @@
-<%= form_tag(groups_path) do %>
+<%= form_tag(group_path(@group), :method => "PUT") do %>
   <%= text_field_tag :name, '', placeholder: "Group name" %>
   <%= text_field_tag :blurb, '', placeholder: "Group blurb" %>
   <div class='wrap-center' id='add-member-container'><%= button_tag "Add member", id: "add-member", type: 'button' %></div>
@@ -12,11 +12,8 @@
 <% end %>
 
 <script>
-
   $(document).ready(function() {
     var emailCount = 0;
-    // alert('hey');
-
     $('#add-member').click(function(event) {
       event.preventDefault();
       var newField = buildEmailField(emailCount);
@@ -28,5 +25,4 @@
   var buildEmailField = function(count) {
     return "<input name='users[" + count + "]' type='text' placeholder='Email'/>"
   }
-
 </script>
