@@ -1,0 +1,7 @@
+<h1>New Payment to <%= @recipient.full_name %></h1>
+
+<%= form_tag group_recipient_payments_path do %>
+
+  <%= text_field_tag :transaction_amount, '', placeholder: "Amount" %>
+  <div class='wrap-center'><%= submit_tag "Create Payment" %></div>
+<% end %>
