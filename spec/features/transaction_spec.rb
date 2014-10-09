@@ -90,13 +90,25 @@ feature "Create Bill" do
         first('input[type="submit"]').click
       }.to change(Payment, :count).by(1)
     end
+
+    it "cannot create a transaction with an invalid or missing" do
+      visit group_path(Group.first)
+      first('a [class="pay"]').click
+      expect {
+        fill_in 'transaction_amount', with: "asdasd"
+        first('input[type="submit"]').click
+        expect(page).to have_content("There was an issue creating the payment")
+      }.to change(Payment, :count).by(0)
+
+      visit group_path(Group.first)
+      first('a [class="pay"]').click
+      expect {
+        fill_in 'transaction_amount', with: ""
+        first('input[type="submit"]').click
+        expect(page).to have_content("There was an issue creating the payment")
+      }.to change(Payment, :count).by(0)
+    end
   end
 end
-
-
-
-
-
-
 
 

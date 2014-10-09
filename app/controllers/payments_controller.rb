@@ -5,7 +5,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    puts params
     amount = params[:transaction_amount]
     group = Group.find_by_id(params[:group_id])
     recipient = User.find_by_id(params[:recipient_id])
