@@ -7,7 +7,6 @@ class TransactionsController < ApplicationController
   def create
     group = Group.find_by_id(params[:group_id])
     amount = params[:transaction_amount]
-    is_bill = params[:is_bill]
 
     if !params[:members]
       flash[:error] = "There was an issue creating the bill. Please select at least one member to bill."
@@ -20,7 +19,6 @@ class TransactionsController < ApplicationController
           to_user: user,
           group_id: group.id,
           amount: amount,
-          is_bill: is_bill
         )
 
         if !t.save

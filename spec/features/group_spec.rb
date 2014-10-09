@@ -3,9 +3,15 @@ require 'spec_helper'
 feature "Group" do
   before(:each) do
     visit root_url
-    User.create!(first_name: "Sam", last_name: "Spade", email: "sam@test.com", password: "pow", password_confirmation: "pow")
-    fill_in 'user_email', with: "sam@test.com"
-    fill_in 'user_password', with: "pow"
+    colin = User.create!(email: "colin@mail.com", password: "colin", password_confirmation: "colin", first_name: "Colin", last_name: "Shevlin")
+    henry = User.create!(email: "henry@mail.com", password: "henry", password_confirmation: "henry", first_name: "Henry", last_name: "P")
+    andrea = User.create!(email: "andrea@mail.com", password: "andrea", password_confirmation: "andrea", first_name: "Andrea", last_name: "Simenstad")
+    padd = Group.create!(name: "Padd", blurb: "123 North Sesame Street")
+    padd.users << colin
+    padd.users << henry
+    padd.users << andrea
+    fill_in 'user_email', with: "colin@mail.com"
+    fill_in 'user_password', with: "colin"
     first('input[type="submit"]').click
   end
 
@@ -30,7 +36,7 @@ feature "Group" do
     end
 
     it 'should assign current user to new group' do
-      @user = User.find_by(email: "sam@test.com")
+      @user = User.find_by(email: "colin@mail.com")
       expect {
         click_link "Create group"
         fill_in 'name', with: "da hacker house"
@@ -39,4 +45,21 @@ feature "Group" do
       }.to change(@user.groups, :count).by(1)
     end
   end
+
+  context "on the group show page" do
+    it "should group member names" do
+      visit group_path(Group.first)
+      expect(page).to have_content("Henry P")
+      expect(page).to have_content("Andrea Simenstad")
+    end
+  end
 end
+
+
+
+
+
+
+
+
+
