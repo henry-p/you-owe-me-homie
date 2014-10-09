@@ -26,9 +26,17 @@ feature "Household" do
         fill_in 'address', with: ""
         first('input[value="Create Dwelling"]').click
       }.to change(Household, :count).by(0)
-      expect(page).to have_content("New Dwelling")
+      expect(page).to have_content("Address can't be blank")
+    end
+
+    it 'should assign current user to new dwelling' do
+      @user = User.find_by(email: "sam@test.com")
+      expect {
+        click_link "Create dwelling"
+        fill_in 'name', with: "da hacker house"
+        fill_in 'address', with: "555 kinzie"
+        first('input[value="Create Dwelling"]').click
+      }.to change(@user.households, :count).by(1)
     end
   end
-
-
 end

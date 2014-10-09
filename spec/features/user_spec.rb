@@ -61,6 +61,25 @@ feature 'User home' do
       expect(page).to have_content("DBC")
     end
   end
+
+  context "dwelling has been created" do
+    before(:each) do
+      visit root_url
+      sam = User.create!(first_name: "Sam", last_name: "Spade", email: "sam@test.com", password: "pow", password_confirmation: "pow")
+      household1 = Household.create!(name: "trap house", address: "54123 Kinzie")
+      household2 = Household.create!(name: "hacker house", address: "123 Sesame street")
+      household1.users << sam
+      household2.users << sam
+      fill_in 'user_email', with: "sam@test.com"
+      fill_in 'user_password', with: "pow"
+      first('input[type="submit"]').click
+    end
+
+    it "shows a link to the dwelling on the user's show page" do
+      expect(page).to have_content('a', "trap house")
+      expect(page).to have_content('a', "hacker house")
+    end
+  end
 end
 
 feature "Nav bar" do
@@ -78,3 +97,4 @@ feature "Nav bar" do
     end
   end
 end
+

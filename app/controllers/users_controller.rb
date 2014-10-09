@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_filter :redirect_if_not_logged_in, except: [:new, :create]
 
   def new
+    if logged_in?
+      redirect_to user_path(user)
+    end
     @user = User.new
   end
 
@@ -17,8 +20,6 @@ class UsersController < ApplicationController
   def show
     @households = current_user.households
   end
-
-
 
   private
 
