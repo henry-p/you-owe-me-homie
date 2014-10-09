@@ -3,4 +3,5 @@ class Household < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :name, presence:true
+  validates :address, presence:true
 end

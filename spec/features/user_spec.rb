@@ -51,7 +51,7 @@ feature 'User home' do
 
     it 'displays the households of the user upon login' do
       visit root_url
-      household = Household.create(name: "DBC")
+      household = Household.create(name: "DBC", address: "W Hubbard")
       user = User.create!(first_name: "Sam", last_name: "Spade", email: "sam@test.com", password: "pow", password_confirmation: "pow")
       user.households << household
       fill_in 'user_email', with: "sam@test.com"
@@ -77,5 +77,4 @@ feature "Nav bar" do
       expect(page).to have_content "Register"
     end
   end
-
 end
