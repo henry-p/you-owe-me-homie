@@ -1,18 +1,18 @@
 <h1>Register</h1>
 
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li> <%= msg %> </li>
-    <% end %>
-  </ul>
-<% end %>
+
 
 <%= form_for @user do |f| %>
-  <%= f.text_field :email %>
-  <%= f.text_field :first_name %>
-  <%= f.text_field :last_name %>
-  <%= f.password_field :password %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.text_field :email, placeholder: "email" %>
+  <%= f.text_field :first_name, placeholder: "first name" %>
+  <%= f.text_field :last_name, placeholder: "last name"%>
+  <%= f.password_field :password, placeholder: "password" %>
+  <%= f.password_field :password_confirmation, placeholder: "confirm password"%>
   <div class='wrap-center'><%= f.submit "Register" %></div>
+<% end %>
+
+<% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <div class='wrap-center'><p class = 'error'> <%= msg %></p></div>
+    <% end %>
 <% end %>

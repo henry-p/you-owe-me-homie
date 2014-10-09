@@ -14,6 +14,7 @@
 
 body {
   font-family: helvetica;
+  margin-top:50px;
 }
 
 h1, h2 {
@@ -32,11 +33,45 @@ h1, h2 {
   text-align: center;
 }
 
+header {
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
+  height:40px;
+  background-color:black;
+  overflow:hidden;
+  nav {
+    max-width:80%;
+    margin:auto;
+    text-align:right;
+  };
+  a, a:visited {
+    transition: all, 0.2s ease-in-out;
+    text-decoration:none;
+    display:inline-block;
+    padding:12px;
+    color:white;
+    &:hover {
+      color:white;
+      background-color:#333;
+    }
+  }
+}
+
+a, a:visited {
+  color: black;
+  text-decoration: underline;
+  &:hover {
+    color: #3D7A99;
+  };
+}
+
 input {
   display:block;
   height:40px;
   width:350px;
-  margin:auto;
+  margin: 10px auto;
   font-size: 1.2em;
   text-align: center;
 }
@@ -47,8 +82,9 @@ input[type=submit] {
   border:2px solid black;
   display:inline;
   &:hover {
-    border:2px solid gray;
+    border:2px solid #3D7A99;
     cursor:pointer;
+    color: #3D7A99;
   };
 }
 
@@ -59,6 +95,10 @@ input[type=submit] {
   display:inline-block;
 }
 
+p.error {
+  margin:0;
+}
+
 .sig-color {
-  color:#3D7A99
+  color:#3D7A99;
 }
