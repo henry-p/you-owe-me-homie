@@ -20,13 +20,7 @@ feature "Group" do
     it "should be able to create a new group" do
       expect {
         visit root_path
-        fill_in 'user_email', with: "sam@test.com"
-        fill_in 'user_password', with: "pow"
-        first('input[type="submit"]').click
-        visit user_path(user)
-
         click_link "Create group"
-        save_and_open_page
         fill_in 'group_name', with: "da hacker house"
         fill_in 'group_blurb', with: "555 Kinzie"
         first('input[value="Create Group"]').click
@@ -37,8 +31,8 @@ feature "Group" do
       expect {
         visit root_url
         click_link "Create group"
-        fill_in 'name', with: ""
-        fill_in 'blurb', with: "blurbby"
+        fill_in 'group_name', with: ""
+        fill_in 'group_blurb', with: "blurbby"
         first('input[value="Create Group"]').click
       }.to change(Group, :count).by(0)
       expect(page).to have_content("Name can't be blank")
@@ -46,12 +40,13 @@ feature "Group" do
 
     it 'should assign current user to new group' do
       @user = User.find_by(email: "colin@mail.com")
-      expect {
+      # expect {
         click_link "Create group"
-        fill_in 'name', with: "da hacker house"
-        fill_in 'blurb', with: "555 kinzie"
+        fill_in 'group_name', with: "da hacker house"
+        fill_in 'group_blurb', with: "555 kinzie"
         first('input[value="Create Group"]').click
-      }.to change(@user.groups, :count).by(1)
+      # }.to change(@user.groups, :count).eq
+      expect(@user.groups.count).to eq(1)
     end
   end
 
