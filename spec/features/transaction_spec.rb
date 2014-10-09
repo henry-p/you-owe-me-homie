@@ -43,6 +43,7 @@ feature "Create Bill" do
         find('input[value="andrea@mail.com"]').set(true)
         fill_in 'transaction_amount', with: "00"
         first('input[type="submit"]').click
+        expect(page).to have_content("There was an issue creating the bill")
       }.to change(Transaction, :count).by(0)
 
       visit group_path(Group.first)

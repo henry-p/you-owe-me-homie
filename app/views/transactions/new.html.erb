@@ -2,11 +2,12 @@
 
 <%= form_tag group_transactions_path do %>
   <% count = 0 %>
+
   <% @group_members.each do |member| %>
     <%= member.first_name %> <%= check_box_tag "members[#{count += 1}]", "#{member.email}" %>
   <% end %>
+
   <%= text_field_tag :transaction_amount, '', placeholder: "Amount" %>
   <%= hidden_field_tag "is_bill", "true" %>
-
-  <%= submit_tag "Create Bill" %>
+  <div class='wrap-center'><%= submit_tag "Create Bill" %></div>
 <% end %>
