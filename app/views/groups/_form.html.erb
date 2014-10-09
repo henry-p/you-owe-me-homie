@@ -1,0 +1,12 @@
+<%= form_tag(groups_path) do %>
+  <%= text_field_tag :name, '', placeholder: "Group name" %>
+  <%= text_field_tag :blurb, '', placeholder: "Group blurb" %>
+  <div class='wrap-center' id='add-member-container'><%= button_tag "Add member", id: "add-member" %></div>
+  <div class='wrap-center'><%= submit_tag "Create Group" %></div>
+<% end %>
+
+<% if @group.errors.any? %>
+  <% @group.errors.full_messages.each do |msg| %>
+    <div class='wrap-center'><p class='error'> <%= msg %> </p></div>
+  <% end %>
+<% end %>

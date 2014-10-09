@@ -18,6 +18,10 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
   end
 
+  def edit
+    @group = Group.find_by(id: params[:id])
+  end
+
   private
 
   def group_params
