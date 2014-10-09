@@ -41,12 +41,23 @@ feature 'Register' do
 end
 
 feature 'User home' do
-
   context 'Welcome page for logged in user' do
     it 'redirects to login if not logged in' do
       user = User.create!(first_name: "Sam", last_name: "Spade", email: "sam@test.com", password: "pow", password_confirmation: "pow")
       visit user_path(user)
       expect(page).to have_content("Register")
+    end
+
+    it 'redirects to show page from register/welcome page if logged in' do
+      visit root_url
+      user = User.create!(first_name: "Sam", last_name: "Spade", email: "sam@test.com", password: "pow", password_confirmation: "pow")
+      fill_in 'user_email', with: "sam@test.com"
+      fill_in 'user_password', with: "pow"
+      first('input[type="submit"]').click
+      visit root_url
+      expect(page).to_not have_content("Register")
+      visit new_user_url
+      expect(page).to_not have_content("Register")
     end
 
     it 'displays the households of the user upon login' do
