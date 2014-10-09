@@ -1,6 +1,7 @@
 <header>
   <nav>
     <%= link_to "Hi, #{current_user.first_name}!", "#" %>
+    <%= link_to "My Profile", user_path(current_user) %>
     <%= link_to "Logout", logout_path, method: :delete %>
   </nav>
 </header>
