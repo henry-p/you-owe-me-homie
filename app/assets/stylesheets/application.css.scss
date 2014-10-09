@@ -14,7 +14,6 @@
 
 body {
   font-family: helvetica;
-  margin-top:50px;
 }
 
 h1, h2 {
@@ -88,6 +87,20 @@ input[type=submit] {
   };
 }
 
+.link {
+  width:200px;
+  text-decoration:none;
+  padding:10px;
+  background-color:white;
+  border:2px solid black;
+  display:inline;
+  &:hover {
+    border:2px solid #3D7A99;
+    cursor:pointer;
+    color: #3D7A99;
+  };
+}
+
 .error {
   background-color: pink;
   padding:10px;
@@ -102,3 +115,41 @@ p.error {
 .sig-color {
   color:#3D7A99;
 }
+
+#app-container {
+  max-width: 800px;
+  margin: 120px auto;
+}
+
+ul {
+  list-style:none;
+  padding-left:0;
+}
+
+#dwelling-list {
+  margin-top:50px;
+}
+
+.ul-link {
+  li {
+    font-weight:100;
+    margin-top:10px;
+    color:white;
+    display:inline-block;
+    background-color: #3D7A99;
+    width:200px;
+    padding:30px 10px;
+    h2 {
+      font-weight:100;
+      margin:0;
+    };
+    &:hover {
+      background-color:#25495C;
+    }
+  }
+}
+
+
+
+
+

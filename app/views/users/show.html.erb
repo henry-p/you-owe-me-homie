@@ -1,7 +1,14 @@
-<div class='wrap-center'><%= link_to "Create dwelling", new_household_path %></div>
+<div class='wrap-center'><%= link_to "Create dwelling", new_household_path, class: "link" %></div>
 
-<% @households.each do |household| %>
-
-  <%= link_to "#{household.name}", household_path(household) %>
-
-<% end %>
+<div class='wrap-center' id="dwelling-list">
+  <ul>
+    <% @households.each do |household| %>
+      <%= link_to household_path(household), class: 'ul-link' do %>
+        <li>
+          <h2><%= "#{household.name}" %></h2>
+          <%= "#{household.address}" %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

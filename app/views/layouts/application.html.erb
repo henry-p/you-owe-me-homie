@@ -10,7 +10,9 @@
   <% if logged_in? %>
     <%= render 'layouts/header' %>
   <% end %>
-  <%= yield %>
+  <div id="app-container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
