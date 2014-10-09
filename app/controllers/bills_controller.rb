@@ -30,5 +30,4 @@ class BillsController < ApplicationController
 
     redirect_to group_path(group)
   end
-
 end
