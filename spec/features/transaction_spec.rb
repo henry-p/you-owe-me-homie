@@ -24,7 +24,7 @@ feature "Create Bill" do
         find('input[value="andrea@mail.com"]').set(true)
         fill_in 'transaction_amount', with: "8.99"
         first('input[type="submit"]').click
-      }.to change(Transaction, :count).by(2)
+      }.to change(Bill, :count).by(2)
     end
 
     it "cannot create a transaction with no members selected" do
