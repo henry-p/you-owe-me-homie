@@ -19,8 +19,12 @@ feature "Create Bill" do
     it "can create a transaction" do
       visit group_path(Group.first)
       click_link "Create Bill"
-      save_and_open_page
-      fill_in 'transaction_amount', with: "8.99"
+      expect {
+        find('input[value="henry@mail.com"]').set(true)
+        find('input[value="andrea@mail.com"]').set(true)
+        fill_in 'transaction_amount', with: "8.99"
+        first('input[type="submit"]').click
+      }.to change(Transaction, :count).by(2)
     end
   end
 end
