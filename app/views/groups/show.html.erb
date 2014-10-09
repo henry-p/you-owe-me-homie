@@ -16,5 +16,6 @@
 <% @members.each do |member| %>
   <div class="member">
     <h3><%= member.full_name %></h3>
+    <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay" %>
   </div>
 <% end %>
