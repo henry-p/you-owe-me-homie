@@ -1,8 +1,8 @@
-<%= form_tag(group_path(@group), :method => "PUT") do %>
-  <%= text_field_tag :name, '', placeholder: "Group name" %>
-  <%= text_field_tag :blurb, '', placeholder: "Group blurb" %>
+<%= form_for @group do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :blurb %>
   <div class='wrap-center' id='add-member-container'><%= button_tag "Add member", id: "add-member", type: 'button' %></div>
-  <div class='wrap-center'><%= submit_tag "Create Group" %></div>
+  <div class='wrap-center'><%= f.submit %></div>
 <% end %>
 
 <% if @group.errors.any? %>
@@ -10,19 +10,3 @@
     <div class='wrap-center'><p class='error'> <%= msg %> </p></div>
   <% end %>
 <% end %>
-
-<script>
-  $(document).ready(function() {
-    var emailCount = 0;
-    $('#add-member').click(function(event) {
-      event.preventDefault();
-      var newField = buildEmailField(emailCount);
-      emailCount += 1;
-      $("#add-member-container").before(newField);
-    })
-  });
-
-  var buildEmailField = function(count) {
-    return "<input name='users[" + count + "]' type='text' placeholder='Email'/>"
-  }
-</script>

@@ -14,6 +14,6 @@ class Group < ActiveRecord::Base
         unregistered << email
       end
     end
-    unregistered
+    return unregistered
   end
 end

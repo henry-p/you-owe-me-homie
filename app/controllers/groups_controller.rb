@@ -5,13 +5,10 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-
     if @group.save && params[:users]
       @group.users << current_user
       rejects = @group.add_members(params["users"].values)
-      unless rejects.empty?
-        flash[:error] = "The following emails are not registered members: #{rejects.join(", ")}"
-      end
+      unregistered_error(rejects) unless rejects.empty?
       redirect_to group_path(@group)
     else
       render 'new'
@@ -28,13 +25,9 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find_by(id: params[:id])
-    p "GROUP ------------------------------"
-    p @group
     if @group.update_attributes(group_params) && params[:users]
       rejects = @group.add_members(params["users"].values)
-      unless rejects.empty?
-        flash[:error] = "The following emails are not registered members: #{rejects.join(", ")}"
-      end
+      unregistered_error(rejects) unless rejects.empty?
       redirect_to group_path(@group)
     else
       render 'edit'
@@ -44,8 +37,10 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.permit(:name, :blurb)
+    params.require(:group).permit(:name, :blurb)
   end
-
+  def unregistered_error(rejects)
+    flash[:error] = "The following emails are not registered members: #{rejects.join(", ")}"
+  end
 
 end
