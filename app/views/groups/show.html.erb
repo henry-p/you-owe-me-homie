@@ -15,12 +15,8 @@
 <% @members.each do |member| %>
   <div class="member">
     <h3><%= member.full_name %></h3>
-<<<<<<< HEAD
     <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link", id:"money" %>
-=======
-    <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link" %>
     <%= link_to "Payment History", member_transaction_history_path(@group, member), class: "transactions link" %>
->>>>>>> 3f217de32776ad2edbef2ae9ce34d57f29c10875
   </div>
 <% end %>
 

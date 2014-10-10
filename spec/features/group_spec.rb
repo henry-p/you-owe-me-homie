@@ -117,9 +117,4 @@ feature "Group" do
       expect(page).to_not have_content("Payment from Henry P")
     end
   end
-
-<<<<<<< HEAD
-=======
-  
->>>>>>> 3f217de32776ad2edbef2ae9ce34d57f29c10875
 end
