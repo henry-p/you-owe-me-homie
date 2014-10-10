@@ -5,10 +5,6 @@
 <h1> <%= @group.name %> </h1>
 <h1> <%= @group.blurb %> </h1>
 
-<% if flash[:error] %>
-  <div class='wrap-center'><p class='error'> <%= flash[:error] %> </p></div>
-<% end %>
-
 <%= link_to "Edit Group", edit_group_path(@group), class: 'link' %>
 <%= link_to "Create Bill", new_group_bill_path(@group), class: 'link' %>
 
