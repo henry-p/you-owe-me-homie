@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by(id: params[:id])
     @members = @group.users - [current_user]
-    @unconfirmed_txns = Transaction.all
+    @unconfirmed_txns = Transaction.where(to_user: current_user, confirmed: false)
   end
 
   def edit

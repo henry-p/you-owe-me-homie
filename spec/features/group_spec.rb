@@ -12,6 +12,7 @@ feature "Group" do
     padd.users << henry
     padd.users << andrea
     txn1 = Bill.create!(from_user: henry, to_user: colin, group_id: padd.id, amount: "100", confirmed: true)
+    txn1 = Bill.create!(from_user: henry, to_user: colin, group_id: padd.id, amount: "25", confirmed: false)
     txn2 = Payment.create!(from_user: henry, to_user: colin, group_id: padd.id, amount: "50", confirmed: false)
     txn3 = Bill.create!(from_user: andrea, to_user: colin, group_id: padd.id, amount: "200", confirmed: true)
     txn4 = Bill.create!(from_user: colin, to_user: henry, group_id: padd.id, amount: "200", confirmed: true)
@@ -71,15 +72,34 @@ feature "Group" do
   #   # expect(page).to have_css("input[name='users[0]']")
   # end
   context "on the group show page" do
-    it "should group member names" do
+    it "shows group member names" do
       visit group_path(Group.first)
       expect(page).to have_content("Henry P")
       expect(page).to have_content("Andrea Simenstad")
     end
 
-    it "should unconfirmed transactions for user" do
+    it "shows unconfirmed transactions for user" do
       visit group_path(Group.first)
-      expect(page).to have_content "Payment from Henry"
+      expect(page).to have_content "Payment from Henry P"
+      expect(page).to have_content "Bill from Henry P"
+      expect(page).to have_content "Confirm Transaction"
+      expect(page).to have_content "$50"
+    end
+
+    it "does not show confirmed transactions for user" do
+      visit group_path(Group.first)
+      expect(page).to_not have_content "Payment from Andrea"
+    end
+
+    it "can confirm a transaction" do
+      visit group_path(Group.first)
+      user = User.find_by_email("colin@mail.com")
+      initial_unconfirmed_count = Transaction.where(to_user: user, confirmed: false).count
+      first(:link, "Confirm Transaction").click
+      unconfirmed_count = Transaction.where(to_user: user, confirmed: false).count
+      expect(initial_unconfirmed_count - unconfirmed_count).to eq 1
+      expect(page).to_not have_content("Payment from Henry P")
     end
   end
+
 end
