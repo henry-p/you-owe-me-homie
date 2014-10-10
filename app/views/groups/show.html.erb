@@ -2,7 +2,7 @@
   <div class='wrap-center'><p class='error'><%= flash[:error] %></p></div>
 <% end %>
 
-<div class='wrap-center'><%= link_to "Edit Group", edit_group_path(@group), class: 'link' %></div>
+<div class='wrap-center'><h5><%= link_to "Edit Group", edit_group_path(@group), class: 'link' %></h5></div>
 
 <h1> <%= @group.name %> </h1>
 <h2> <%= @group.blurb %> </h2>
