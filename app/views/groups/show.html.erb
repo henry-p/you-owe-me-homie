@@ -19,3 +19,5 @@
     <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link" %>
   </div>
 <% end %>
+
+<%= render 'transactions/unconfirmed_list' %>

@@ -1,0 +1,11 @@
+<ul>
+  <% @unconfirmed_txns.each do |txn| %>
+    <li>
+      <%= txn.transaction_type %> from <%= txn.from_user.full_name %>
+      <br>
+      $<%= txn.amount %>
+      <br>
+      <%= link_to "Confirm Transaction", edit_group_transaction_path(@group, txn) %>
+    </li>
+  <% end %>
+</ul>
