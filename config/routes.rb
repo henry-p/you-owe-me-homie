@@ -8,6 +8,9 @@ Dwellings::Application.routes.draw do
   post "/groups/:group_id/bills" => "bills#create", as: "group_bills"
   post "/groups/:group_id/recipient/:recipient_id/payments" => "payments#create", as: "group_recipient_payments"
 
+  get "/groups/:group_id/member/:member_id/transactions" => "transactions#show", as: "member_transaction_history"
+
+
   resources :groups, except: [:index] do
     resources :comments, only: [:new, :create, :show]
     resources :transactions, only: [:delete, :show] do

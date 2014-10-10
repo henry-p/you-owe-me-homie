@@ -17,5 +17,6 @@
   <div class="member">
     <h3><%= member.full_name %></h3>
     <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link" %>
+    <%= link_to "Payment History", member_transaction_history_path(@group, member), class: "transactions link" %>
   </div>
 <% end %>

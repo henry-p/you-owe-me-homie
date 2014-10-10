@@ -73,4 +73,6 @@ feature "Group" do
       expect(page).to have_content("Andrea Simenstad")
     end
   end
+
+  
 end
