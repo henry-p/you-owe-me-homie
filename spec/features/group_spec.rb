@@ -11,6 +11,11 @@ feature "Group" do
     padd.users << colin
     padd.users << henry
     padd.users << andrea
+    txn1 = Bill.create!(from_user_id: 2, to_user: colin, group_id: 1, amount: "100", confirmed: true)
+    txn2 = Payment.create!(from_user_id: 2, to_user: colin, group_id: 1, amount: "50", confirmed: false)
+    txn3 = Bill.create!(from_user_id: 3, to_user: colin, group_id: 2, amount: "200", confirmed: true)
+    txn4 = Bill.create!(from_user_id: 1, to_user_id: 2, group_id: 2, amount: "200", confirmed: true)
+    txn5 = Payment.create!(from_user_id: 1, to_user_id: 2, group_id: 2, amount: "200", confirmed: true)
     fill_in 'user_email', with: "colin@mail.com"
     fill_in 'user_password', with: "colin"
     first('input[type="submit"]').click
@@ -71,6 +76,11 @@ feature "Group" do
       visit group_path(Group.first)
       expect(page).to have_content("Henry P")
       expect(page).to have_content("Andrea Simenstad")
+    end
+
+    it "should unconfirmed transactions for user" do
+      visit group_path(Group.first)
+      # save_and_open_page
     end
   end
 end
