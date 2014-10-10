@@ -9,13 +9,13 @@
   <div class='wrap-center'><p class='error'> <%= flash[:error] %> </p></div>
 <% end %>
 
-<%= link_to "Edit Group", edit_group_path(@group) %>
-<%= link_to "Create Bill", new_group_bill_path(@group) %>
+<%= link_to "Edit Group", edit_group_path(@group), class: 'link' %>
+<%= link_to "Create Bill", new_group_bill_path(@group), class: 'link' %>
 
 
 <% @members.each do |member| %>
   <div class="member">
     <h3><%= member.full_name %></h3>
-    <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay" %>
+    <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link" %>
   </div>
 <% end %>
