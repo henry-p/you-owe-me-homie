@@ -2,18 +2,22 @@
   <div class='wrap-center'><p class='error'><%= flash[:error] %></p></div>
 <% end %>
 
+<div class='wrap-center'><%= link_to "Edit Group", edit_group_path(@group), class: 'link' %></div>
+
 <h1> <%= @group.name %> </h1>
-<h1> <%= @group.blurb %> </h1>
+<h2> <%= @group.blurb %> </h2>
 
-<%= link_to "Edit Group", edit_group_path(@group), class: 'link' %>
-<%= link_to "Create Bill", new_group_bill_path(@group), class: 'link' %>
 
+<br>
+<div class='wrap-center'><%= link_to "Create Bill", new_group_bill_path(@group), class: 'link pay', id:"money" %></div>
+<br>
 
 <% @members.each do |member| %>
   <div class="member">
     <h3><%= member.full_name %></h3>
-    <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link" %>
+    <%= link_to "Pay", new_group_recipient_payment_path(@group, member), class: "pay link", id:"money" %>
   </div>
 <% end %>
+
 
 <%= render 'transactions/unconfirmed_list' %>

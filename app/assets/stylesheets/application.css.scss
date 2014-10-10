@@ -150,3 +150,26 @@ ul {
   }
 }
 
+.danger {
+  &:hover {
+    color: brown;
+    border: 2px solid brown;
+  }
+}
+
+#money {
+  &:hover {
+    color: green;
+    border: 2px solid green;
+  }
+}
+
+.member {
+  margin:auto;
+  width:300px;
+  text-align:center;
+}
+
+
+
+
