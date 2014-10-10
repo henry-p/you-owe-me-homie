@@ -7,9 +7,6 @@ class TransactionsController < ApplicationController
 
     @transactions = txns.order('created_at DESC')
     
-
-
-
 	end
 end
 
