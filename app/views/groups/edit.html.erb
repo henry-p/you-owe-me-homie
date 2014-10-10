@@ -1,6 +1,9 @@
 <h1>Edit <%= "#{@group.name}" %></h1>
 <%= render 'form' %>
 
+<br>
+<br>
+<br>
 <div class='wrap-center'>
-  <%= link_to 'Leave Group', leave_group_path(@group, current_user), method: "post", confirm: "Are you sure?", class: 'warning-link' %>
+  <%= link_to 'Leave Group', leave_group_path(@group, current_user), method: "post", confirm: "Are you sure?", class: 'link danger' %>
 </div>

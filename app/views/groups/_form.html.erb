@@ -1,6 +1,6 @@
 <%= form_for @group do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_field :blurb %>
+  <%= f.text_field :name, placeholder: "Group name" %>
+  <%= f.text_field :blurb, placeholder: "Blurb" %>
   <div class='wrap-center' id='add-member-container'><%= button_tag "Add member", id: "add-member", type: 'button' %></div>
   <div class='wrap-center'><%= f.submit %></div>
 <% end %>
