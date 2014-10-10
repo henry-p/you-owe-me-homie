@@ -84,7 +84,7 @@ feature "Create Bill" do
   context "on group show page" do
     it "can create a transaction" do
       visit group_path(Group.first)
-      first('a [class="pay"]').click
+      first('a [class="pay link"]').click
       expect {
         fill_in 'transaction_amount', with: "8.99"
         first('input[type="submit"]').click
@@ -93,7 +93,7 @@ feature "Create Bill" do
 
     it "cannot create a transaction with an invalid or missing" do
       visit group_path(Group.first)
-      first('a [class="pay"]').click
+      first('a [class="pay link"]').click
       expect {
         fill_in 'transaction_amount', with: "asdasd"
         first('input[type="submit"]').click
@@ -101,7 +101,7 @@ feature "Create Bill" do
       }.to change(Payment, :count).by(0)
 
       visit group_path(Group.first)
-      first('a [class="pay"]').click
+      first('a [class="pay link"]').click
       expect {
         fill_in 'transaction_amount', with: ""
         first('input[type="submit"]').click

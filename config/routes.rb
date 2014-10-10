@@ -12,7 +12,7 @@ Dwellings::Application.routes.draw do
   resources :groups, except: [:index, :delete] do
     # resources :user, only: [:destroy]
     resources :comments, only: [:new, :create, :show]
-    resources :transactions, only: [:delete, :show] do
+    resources :transactions, only: [:edit, :delete, :show] do
       resources :comments, only: [:new, :create, :show]
     end
   end
