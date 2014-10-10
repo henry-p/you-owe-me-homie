@@ -8,7 +8,9 @@ Dwellings::Application.routes.draw do
   post "/groups/:group_id/bills" => "bills#create", as: "group_bills"
   post "/groups/:group_id/recipient/:recipient_id/payments" => "payments#create", as: "group_recipient_payments"
 
-  resources :groups, except: [:index] do
+  # resources :groups, except: [:index] do
+  resources :groups, except: [:index, :delete] do
+    # resources :user, only: [:destroy]
     resources :comments, only: [:new, :create, :show]
     resources :transactions, only: [:delete, :show] do
       resources :comments, only: [:new, :create, :show]
@@ -16,4 +18,6 @@ Dwellings::Application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :show]
+  post '/groups/:group_id/user/:user_id' =>  'users#leave', as: 'leave_group'
+
 end

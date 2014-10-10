@@ -21,6 +21,15 @@ class UsersController < ApplicationController
     @groups = current_user.groups
   end
 
+  def leave
+    redirect_to root_path unless params["user_id"].to_i == session[:user_id].to_i
+    group = Group.find_by(id: params["group_id"])
+    user = current_user
+    user.groups.delete(group)
+    user.save
+    redirect_to user_path(user)
+  end
+
   private
 
   def user_params
