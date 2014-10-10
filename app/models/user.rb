@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
   has_many :transactions, foreign_key: :from_user_id
   has_many :transactions, foreign_key: :to_user_id
+  has_many :bills, foreign_key: :to_user_id
+  has_many :bills, foreign_key: :from_user_id
   has_many :comments
 
   has_secure_password

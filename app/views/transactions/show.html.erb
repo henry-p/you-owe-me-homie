@@ -1,0 +1,31 @@
+<!-- <h1>Transactions History for <%= @member.full_name %></h1> -->
+
+
+<div class="wrap-center">
+
+
+<h2>Transactions with <%= @member.full_name %> </h2>
+
+<table>
+    <tr>
+      <th>Id</th>
+      <th>Amount</th>
+      <th>Transaction Type</th>
+      <th>Created At</th>
+    </tr>
+
+	<% @transactions.each do |txn| %>
+
+	<tr>
+		<td><%= txn.id %></td>	
+		<td><%= txn.amount %></td>	
+		<td><%= txn.transaction_type %></td>	
+		<td><%= txn.created_at %></td>	
+	</tr>
+
+	<% end %>	
+</table>
+
+</div>
+
+

@@ -27,6 +27,27 @@ txn3 = Bill.create!(from_user_id: 3, to_user_id: 1, group_id: 2, amount: "200", 
 txn4 = Bill.create!(from_user_id: 3, to_user_id: 4, group_id: 2, amount: "200", confirmed: true)
 txn5 = Payment.create!(from_user_id: 4, to_user_id: 3, group_id: 2, amount: "200", confirmed: true)
 
+
+# Transaction History for Henry using Colins profile
+
+txn6 = Payment.create!(from_user_id: 1, to_user_id: 2, group_id: 1, amount: "200", confirmed: true)
+txn7 = Payment.create!(from_user_id: 1, to_user_id: 2, group_id: 1, amount: "200", confirmed: true)
+txn8 = Payment.create!(from_user_id: 1, to_user_id: 2, group_id: 1, amount: "200", confirmed: true)
+txn9 = Payment.create!(from_user_id: 1, to_user_id: 2, group_id: 1, amount: "200", confirmed: true)
+# test
+txn10 = Payment.create!(from_user_id: 3, to_user_id: 2, group_id: 1, amount: "500", confirmed: true)
+
+txn11 = Bill.create!(from_user_id: 2, to_user_id: 1, group_id: 1, amount: "200", confirmed: true)
+txn12 = Bill.create!(from_user_id: 2, to_user_id: 1, group_id: 1, amount: "200", confirmed: true)
+txn13 = Bill.create!(from_user_id: 2, to_user_id: 1, group_id: 1, amount: "200", confirmed: true)
+txn14 = Bill.create!(from_user_id: 2, to_user_id: 1, group_id: 1, amount: "200", confirmed: true)
+#test
+txn15 = Bill.create!(from_user_id: 3, to_user_id: 1, group_id: 1, amount: "500", confirmed: true)
+
+
+
+
+
 txn_com_1 = Comment.create!(commentable_id: 1, commentable_type: "Transaction", content: "Henry, pay me for the toilet paper", user_id: 1)
 txn_com_2 = Comment.create!(commentable_id: 2, commentable_type: "Transaction", content: "Colin, here is half for the TP", user_id: 2)
 txn_com_3 = Comment.create!(commentable_id: 3, commentable_type: "Transaction", content: "JJP and Colin, pay up for the goods", user_id: 3)

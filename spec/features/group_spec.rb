@@ -118,4 +118,8 @@ feature "Group" do
     end
   end
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 3f217de32776ad2edbef2ae9ce34d57f29c10875
 end

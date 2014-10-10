@@ -111,4 +111,35 @@ feature "Create Bill" do
   end
 end
 
+feature "View Page History" do
+  before(:each) do
+    visit root_url
+    colin = User.create!(email: "colin@mail.com", password: "colin", password_confirmation: "colin", first_name: "Colin", last_name: "Shevlin")
+    henry = User.create!(email: "henry@mail.com", password: "henry", password_confirmation: "henry", first_name: "Henry", last_name: "P")
+    andrea = User.create!(email: "andrea@mail.com", password: "andrea", password_confirmation: "andrea", first_name: "Andrea", last_name: "Simenstad")
+    padd = Group.create!(name: "Padd", blurb: "123 North Sesame Street")
+    padd.users << colin
+    padd.users << henry
+    padd.users << andrea
+    fill_in 'user_email', with: "colin@mail.com"
+    fill_in 'user_password', with: "colin"
+    first('input[type="submit"]').click
+  end
+
+  context "on group show page" do
+    it "can see payment history for individual" do
+      visit group_path(Group.first)
+      first('a [class="transactions link"]').click
+      expect(page).to have_content("Henry")
+
+      # expect {
+      #   fill_in 'transaction_amount', with: "8.99"
+      #   first('input[type="submit"]').click
+      # }.to change(Payment, :count).by(1)
+    end
+  end
+
+end
+
+
 
