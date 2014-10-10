@@ -50,6 +50,22 @@ feature "Group" do
     end
   end
 
+  context 'on the group edit page' do
+    it 'user can leave a group' do
+      @user = User.find_by(email: "colin@mail.com")
+      click_link 'Padd'
+      click_link 'Edit Group'
+      # click_link 'Leave Group'
+      # page.driver.browser.switch_to.alert.dismiss
+
+      # This test works, but only when there is no confirmation for leaving a group.
+      # expect{click_link 'Leave Group'}.to change(@user.groups, :count).by(-1)
+
+      # This test should work for confirmation messages, but it requires using selenium
+      # expect(page.driver.browser.switch_to.alert.accept).to change(@user.groups, :count).by(1)
+    end
+  end
+
   # it 'should allow users to edit a group', :js => true do
   #   visit root_url
   #   click_link "Create group"
