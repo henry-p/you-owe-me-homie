@@ -130,6 +130,8 @@ feature "View Page History" do
     it "can see payment history for individual" do
       visit group_path(Group.first)
       first('a [class="transactions link"]').click
+      expect(page).to have_content("Henry")
+
       # expect {
       #   fill_in 'transaction_amount', with: "8.99"
       #   first('input[type="submit"]').click
